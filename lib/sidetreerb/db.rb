@@ -19,9 +19,12 @@ module Sidetreerb
 
     end
 
+    def add_to_que_create_operation(create_operation)
+      wallet_adapter.add_to_que_create_operation
+    end
 
-    def load_qued_create_operations()
-      wallet_adapter.load_qued_create_operations()
+    def load_qued_create_operations
+      wallet_adapter.load_qued_create_operations(create_operation)
     end
 
     private
