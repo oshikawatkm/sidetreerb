@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency 'bitcoinrb', '>= 0.7.0'
+  spec.add_runtime_dependency 'json-canonicalization'
 end
