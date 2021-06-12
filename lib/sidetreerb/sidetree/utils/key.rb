@@ -3,26 +3,28 @@
 
 module Sidetreerb
   module Sidetree
-    class Key
-    
-      def initialize(id:, pubkey:, privkey:)
-        @id = id
-        @pubkey = pubkey
-        @privkey = privkey
+    module Utils
+      class Key
+      
+        def initialize(id = nil)
+          key_pair = Bitcoin::Key.generate
+          @id = id
+          @pubkey = key_pair.pubkey
+          @privkey = key_pair.priv_key
+        end
+
+        def generate_commitment
+          Sidetreerb::Sidetree::Utils::Hash.double_hash(@pubkey)
+        end
+
+        def to_jwk
+          
+        end
+
+        def sign
+
+        end
       end
-
-      def generate_commitment
-        Hash.double_hash(pubkey)
-      end
-
-      def to_jwk
-        
-      end
-
-      def sign
-
-      end
-
     end
   end
 end

@@ -3,18 +3,18 @@
 module Sidetreerb
   module Sidetree
     class PatchManager
-      autoload :AddPublicKeysPatch, 'sidetreerb/sidetreerb/lib/sidetreerb/sidetree/patch/add_public_keys'
-      autoload :IetfJsonPatch, 'sidetreerb/sidetreerb/lib/sidetreerb/sidetree/patch/ietf_json_patch'
-      autoload :PatchType, 'sidetreerb/sidetreerb/lib/sidetreerb/sidetree/patch/patch_type'
-      autoload :RemovePublicKeysPatch, 'sidetreerb/sidetreerb/lib/sidetreerb/sidetree/patch/remove_public_keys'
-      autoload :RemoveServicesPatch, 'sidetreerb/sidetreerb/lib/sidetreerb/sidetree/patch/remove_services'
-      autoload :ReplacePatch, 'sidetreerb/sidetreerb/lib/sidetreerb/sidetree/patch/replace'
-      autoload :Service, 'sidetreerb/sidetreerb/lib/sidetreerb/sidetree/domain/service'
+      autoload :AddPublicKeysPatch, 'sidetreerb/sidetree/patch/add_public_keys'
+      autoload :IetfJsonPatch, 'sidetreerb/sidetree/patch/ietf_json_patch'
+      autoload :PatchType, 'sidetreerb/sidetree/patch/patch_type'
+      autoload :RemovePublicKeysPatch, 'sidetreerb/sidetree/patch/remove_public_keys'
+      autoload :RemoveServicesPatch, 'sidetreerb/sidetree/patch/remove_services'
+      autoload :ReplacePatch, 'sidetreerb/sidetree/patch/replace'
+      autoload :Service, 'sidetreerb/sidetree/domain/service'
     
-      class << slef
+      class << self
 
         def get_instance
-          OperationManager.new
+          PatchManager.new
         end
 
       end
@@ -31,9 +31,9 @@ module Sidetreerb
 
       end
 
-      def generate_replace_patch(key_pair:, services = nil)
-        services ||= Service.new
-        ReplacePatch.new(pubkeys: [key_pair.to_jwk], services: [services])
+      def generate_replace_patch(key_pair:)
+        service ||= Sidetreerb::Sidetree::Service.new
+        Sidetreerb::Sidetree::PatchManager::ReplacePatch.new(pubkeys: [key_pair.to_jwk], services: [service])
       end
 
       def ietf_json_patch
@@ -42,9 +42,9 @@ module Sidetreerb
 
       private
       
-      def def initialize()
-        @attribute = attribute
-      end
+      # def def initialize()
+      #   @attribute = attribute
+      # end
     end
   end
 end

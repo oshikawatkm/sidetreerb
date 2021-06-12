@@ -4,7 +4,7 @@ module Sidetreerb
   module Sidetree
     class RequestHandler
 
-      class << slef
+      class << self
 
         def get_instance
           OperationManager.new()
@@ -15,15 +15,15 @@ module Sidetreerb
 
       def handle_request(request)
         operation = OperationManager.parse(request)
-        when(operation.type)
-        case Operation::CREATE
+        case(operation.type)
+        when Operation::CREATE
           create_operation = CreateOperation.new()
           
-        case Operation::UPDATE
+        when Operation::UPDATE
 
-        case Operation::RECOVERY
+        when Operation::RECOVERY
 
-        case Operation::DEACTIVATE
+        when Operation::DEACTIVATE
 
         else
           raise Errors::UnknownOperationType
