@@ -12,11 +12,9 @@ module Sidetreerb
       autoload :Service, 'sidetreerb/sidetree/domain/service'
     
       class << self
-
         def get_instance
-          PatchManager.new
+          self.new
         end
-
       end
 
       def generate_add_public_keys

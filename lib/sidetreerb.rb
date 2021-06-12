@@ -3,7 +3,6 @@
 require_relative "sidetreerb/version"
 require "bitcoin"
 
-
 module Sidetreerb
   autoload :Blockchain, 'sidetreerb/blockchain'
   autoload :Cas, 'sidetreerb/cas'

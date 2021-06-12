@@ -1,5 +1,3 @@
-require 'pry'
-
 module Sidetreerb
   module Sidetree
     class OperationManager
@@ -9,7 +7,7 @@ module Sidetreerb
       class << self
 
         def get_instance
-          OperationManager.new()
+          self.new
         end
 
       end
@@ -24,7 +22,6 @@ module Sidetreerb
         delta = Sidetreerb::Sidetree::Delta.new(update_commitment: update_key_pair.generate_commitment, patches: [patch])
         suffix_data = self.generate_suffix_data(recover_commitment: recover_key_pair.generate_commitment, delta_hash: delta.generate_hash)
         a = Sidetreerb::Sidetree::OperationManager::CreateOperation.new(suffix_data: suffix_data, delta: delta)
-        binding.pry
       end
 
       def generate_new_update_operation
@@ -39,14 +36,27 @@ module Sidetreerb
         DeactiveOperation.new()
       end
 
-      def apply_create_operation
+      def apply_create_operation(suffix_data:, delta:)
+        Sidetreerb::Sidetree::OperationManager::CreateOperation.new(
+          suffix_data: suffix_data, 
+          delta: delta
+        )
+      end
 
+      def apply_update_operation(suffix_data:, reveal_value:, delta:, signed_data:)
+        Sidetreerb::Sidetree::OperationManager::UpdateOperation.new(
+          suffix_data: suffix_data,
+          reveal_value: reveal_value, 
+          delta: delta, 
+          signed_data: signed_data
+        )
       end
 
       private
 
       def initialize()
-        @patch_manager = PatchManager.get_instance
+        @patch_manager = PatchManager.new
+        @batch_writer = BatchWrite.new
       end
 
       def generate_suffix_data(recover_commitment:, delta_hash:)
