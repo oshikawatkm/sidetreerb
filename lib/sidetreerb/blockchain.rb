@@ -6,7 +6,7 @@ module Sidetree
       def configure(config)
         case config[:blockchain][:type]
         when 'bitcoin'
-          Rubyrpctest::Blockchain.blockchain_adapter = Rubyrpctest::Blockchain::Bitcoind.new(config)
+          Sidetree::Blockchain.blockchain_adapter = Sidetree::Blockchain::Bitcoind.new(config)
         when 'litecoin'
           raise 'implementing...'
         else
