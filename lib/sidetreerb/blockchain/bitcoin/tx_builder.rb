@@ -1,15 +1,12 @@
 module Sidetree
   module Blockchain
     module Bitcoin
-      module TxBuilder < AbstractTxBuilder
+      module TxBuilder
 
-        def read_tx
-
-        end
-
-        def create_tx 
+        def build_tx(anchor_string)
 
         end
+
       end
     end
   end

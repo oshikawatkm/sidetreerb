@@ -16,6 +16,15 @@ module Sidetree
 
     end
 
+
+    def broadcast(tx)
+      blockchain_adapter.broadcast(tx)
+    end
+
+    def build_tx(anchor_string)
+      blockchain_adapter.build_tx(anchor_string)
+    end
+
     private
 
     def blockchain_adapter

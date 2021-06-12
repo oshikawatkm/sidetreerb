@@ -1,6 +1,7 @@
 module Sidetree
   module Blockchain
-    class Bitcoin < AbstractBlockchain
+    class Bitcoin
+      autoload :TxBuilder, ''
 
       def create
         new(blockchain_adapter.create_client)        
