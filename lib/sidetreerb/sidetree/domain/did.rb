@@ -2,8 +2,8 @@ module Sidetreerb
   module Sidetree
     class Did
 
-      def initialize(attribute)
-        @attribute = attribute
+      def initialize(did_suffix)
+        @did_suffix = did_suffix
       end
 
 
