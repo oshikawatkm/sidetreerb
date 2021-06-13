@@ -1,4 +1,4 @@
-
+require 'pry'
 
 module Sidetreerb
   module Sidetree
@@ -36,6 +36,29 @@ module Sidetreerb
 
       def ietf_json_patch
 
+      end
+
+      def apply_replace_patch(public_keys:, services:)
+        ReplacePatch.new(
+          public_keys: public_keys,
+          services: services
+        )
+      end
+
+      def apply_add_public_keys_patch(public_keys:)
+        AddPublicKeysPatch.new(public_keys: public_keys)
+      end
+
+      def apply_remove_public_keys_patch(ids:)
+        RemovePublicKeysPatch.new(ids: ids)
+      end
+
+      def apply_add_services_patch(public_keys:)
+
+      end
+
+      def apply_remove_services_patch(ids:)
+        RemoveServicesPatch.new(ids: ids)
       end
 
       private

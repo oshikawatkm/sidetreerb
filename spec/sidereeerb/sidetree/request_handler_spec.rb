@@ -4,7 +4,7 @@ RSpec.describe 'Sidetreerb::Sidetree::RequestHandler' do
   describe "" do
     
     context "#handle_request" do
-      subject { request_handler.handle_request(create_operation) }
+      subject { request_handler.handle_request(create_operation.export_json) }
 
       let(:create_operation) { operation_manager.generate_new_create_operation }
       let(:operation_manager) { Sidetreerb::Sidetree::OperationManager.get_instance }

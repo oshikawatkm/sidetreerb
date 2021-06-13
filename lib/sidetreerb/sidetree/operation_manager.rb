@@ -5,11 +5,9 @@ module Sidetreerb
       autoload :OperationType, 'sidetreerb/sidetree/operation/operation_type'
 
       class << self
-
         def get_instance
           self.new
         end
-
       end
 
       def generate_new_create_operation
@@ -37,8 +35,9 @@ module Sidetreerb
       end
 
       def apply_create_operation(suffix_data:, delta:)
+        delta = apply_delta(delta: delta)
         Sidetreerb::Sidetree::OperationManager::CreateOperation.new(
-          suffix_data: suffix_data, 
+          suffix_data: suffix_data,
           delta: delta
         )
       end
