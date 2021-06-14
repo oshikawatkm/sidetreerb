@@ -35,7 +35,6 @@ module Sidetreerb
       end
 
       def apply_create_operation(suffix_data:, delta:)
-        delta = apply_delta(delta: delta)
         Sidetreerb::Sidetree::OperationManager::CreateOperation.new(
           suffix_data: suffix_data,
           delta: delta

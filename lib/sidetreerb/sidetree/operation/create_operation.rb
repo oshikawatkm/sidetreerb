@@ -19,6 +19,10 @@ module Sidetreerb
 
         end
 
+        def generate_files
+          
+        end
+
         private
 
       end

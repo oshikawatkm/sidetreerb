@@ -40,7 +40,7 @@ module Sidetreerb
 
       def apply_replace_patch(public_keys:, services:)
         ReplacePatch.new(
-          public_keys: public_keys,
+          pubkeys: public_keys,
           services: services
         )
       end

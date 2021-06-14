@@ -12,8 +12,8 @@ module Sidetreerb
 
       end
 
-      def build_tx
-        blockchain.tx
+      def build_tx(anchor_string)
+        blockchain.build_tx(anchor_string)
       end
 
       def broadcast(tx)
