@@ -4,6 +4,7 @@ module Sidetreerb
   module Sidetree
     class OperationManager
       class CreateOperation
+        attr_reader :suffix_data
 
         def initialize(suffix_data:, delta:)
           @type = Sidetreerb::Sidetree::OperationManager::OperationType::CREATE

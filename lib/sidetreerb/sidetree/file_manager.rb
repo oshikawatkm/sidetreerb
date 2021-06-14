@@ -15,7 +15,7 @@ module Sidetreerb
         end
       end
 
-      def generate_new_files(create_operation:)
+      def generate_new_files(create_operation:, did:, punlished:)
         create_operation
         []
       end

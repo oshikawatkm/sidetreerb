@@ -3,6 +3,11 @@ require 'pry'
 module Sidetreerb
   module Sidetree
     class RequestHandler
+      module ResponseStatus
+        Succeeded = '200'
+        BadRequest = '400'
+        ServerError = '500'
+      end
 
       class << self
         def get_instance
@@ -13,21 +18,23 @@ module Sidetreerb
       def handle_request(request)
         case(request[:type])
         when Sidetreerb::Sidetree::OperationManager::OperationType::CREATE
-          handle_create_operation(request: request)
+          resopnse = handle_create_operation(request: request)
         when Sidetreerb::Sidetree::OperationManager::OperationType::UPDATE
-          handle_update_operation(request: request)
+          resopnse =  handle_update_operation(request: request)
         when Sidetreerb::Sidetree::OperationManager::OperationType::RECOVERY
-          handle_recovery_operation(request: request)
+          resopnse = handle_recovery_operation(request: request)
         when Sidetreerb::Sidetree::OperationManager::OperationType::DEACTIVATE
-          handle_deactive_operation(request: request)
+          resopnse = handle_deactive_operation(request: request)
         else
           raise Sidetreerb::Sidetree::Errors::UnknownOperationType
         end
+        resopnse
       end
 
       private
 
       def initialize
+        @db_manager = DBManager.get_instance
         @file_manager = FileManager.get_instance
         @operation_manager = OperationManager.get_instance
         @patch_manager = PatchManager.get_instance
@@ -38,9 +45,14 @@ module Sidetreerb
           suffix_data: request[:suffixData], 
           delta: handle_delta(request_delta: request[:delta])
         )
-        
-        did = Did.new()
-        files = file_manager.generate_new_files()
+
+        did = Sidetreerb::Sidetree::Did.new(
+          method_name: Sidetreerb::Sidetree::METHOD_NAME,
+          suffix_data: create_operation.suffix_data
+        )
+        files = file_manager.generate_new_files(create_operation: create_operation,did: did, punlished: false)
+
+        { status: ResponseStatus::Succeeded, body: files }
       end
 
 

@@ -2,10 +2,10 @@ module Sidetreerb
   module Sidetree
     class Did
 
-      def initialize(did_suffix)
-        @did_suffix = did_suffix
+      def initialize(method_name:, suffix_data:)
+        @method_name = method_name
+        @suffix_data = suffix_data
       end
-
 
       
     end
