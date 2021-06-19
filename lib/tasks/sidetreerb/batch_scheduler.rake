@@ -23,8 +23,10 @@ namespace :sidetreerb do
   namespace :task do
     namespace :batch_scheduer do
       desc 'start batch writer'
-      task :start, [] => [:environment] do |_, _|
-        Sidetreerb::Task::BatchScheduler.run
+      task :start, [] => [:environment] do |_, args|
+        minutes = args[:minutes] ||= 5 
+        timeout = minutes * 60
+        Sidetreerb::Task::BatchScheduler.run(timeout)
       end
 
       desc 'stop batch writer'
