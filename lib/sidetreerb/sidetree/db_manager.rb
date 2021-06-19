@@ -3,15 +3,18 @@ module Sidetreerb
   module Sidetree
     class DBManager
 
+      def initialize(db_adapter:)
+        @db = db_adapter
+      end
 
-      def en_que_create_operation(create_operation)
-        db.create()
+
+      def enque_create_operation(create_operation)
+        db.create(did_suffix: create_operation.did_suffix, opreration_buffer: create_operation.pack('H*'))
       end
   
-      def load_qued_create_operations
-        
+      def deque_create_operations()
+        db.find()
       end
-
 
     end
   end

@@ -19,7 +19,6 @@ module Sidetreerb
 
     end
 
-
     private
 
     def wallet_adapter
