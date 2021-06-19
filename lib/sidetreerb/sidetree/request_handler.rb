@@ -31,6 +31,10 @@ module Sidetreerb
         resopnse
       end
 
+      def resolve(did_unique_suffix)
+        operations = db.get_operations(did_unique_suffix)
+      end
+
       private
 
       def initialize
