@@ -1,6 +1,6 @@
 module Sidetreerb
   module Cas
-    class Ipfs
+    class Swarm
     
     end
   end

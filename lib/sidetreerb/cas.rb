@@ -1,5 +1,7 @@
 module Sidetreerb
   module Cas
+    autoload :Ipfs, 'sidetreerb/cas/ipfs'
+    autoload :Swarm, 'sidetreerb/cas/swarm'
 
     class << self 
 
