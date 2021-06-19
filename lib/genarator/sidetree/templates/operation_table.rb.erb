@@ -1,0 +1,9 @@
+class CreateOperation < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table :glueby_timestamps<%= table_options %> do |t|
+      t.integer  :type
+      t.string   :did_suffix
+      t.string   :operation_buffer
+    end
+  end
+end
