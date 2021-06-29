@@ -14,10 +14,24 @@ module Sidetreerb
           self.new
         end
       end
+      
 
-      def generate_new_files(create_operation:, did:, punlished:)
-        create_operation
-        []
+      def generate_core_index_file(
+            core_proof_file_index:, 
+            provisional_index_file_uri:,
+            writer_lock_id:,
+            create_operations:
+          )
+        CoreIndexFile.new(
+          core_proof_file_index: core_proof_file_index,
+          provisional_index_file_uri: provisional_index_file_uri,
+          writer_lock_id: writer_lock_id,
+          create_operations: create_operations
+        )
+      end
+
+      def generate_core_proof_file(create_operations:)
+        CoreProofFile.new(operations: operations)
       end
 
     end
