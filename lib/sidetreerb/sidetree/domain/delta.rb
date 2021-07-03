@@ -24,7 +24,11 @@ module Sidetreerb
 
       # [TASK] change hasing method
       def generate_hash
-        Sidetreerb::Sidetree::Utils::Hash.hash({update_commitment: @update_commitment, patches: @patches}.to_json)
+        Sidetreerb::Sidetree::Utils::Hash.canonicalized_multihash({update_commitment: update_commitment, patches: patches}.to_json)
+      end
+
+      def export_json
+        { update_commitment: update_commitment, patches: list_patches }
       end
 
     end
