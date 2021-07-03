@@ -11,3 +11,4 @@ gem "rspec", "~> 3.0"
 gem 'pry-byebug'
 gem 'jose'
 gem 'multihashes'
+gem 'json-canonicalization', "~> 0.2.0" 
