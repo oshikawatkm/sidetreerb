@@ -2,6 +2,7 @@ module Sidetreerb
   module Sidetree
     class FileManager
       class ChunkFile
+        attr_reader :deltas
 
         def initilize(
           deltas: []

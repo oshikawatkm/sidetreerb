@@ -2,6 +2,7 @@ module Sidetreerb
   module Sidetree
     class FileManager
       class ProvisionalProofFile
+        attr_reader :operations
 
         def initilize(
           operations: []

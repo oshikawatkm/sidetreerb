@@ -4,7 +4,7 @@ module Sidetreerb
   module Sidetree
     class OperationManager
       class CreateOperation
-        attr_reader :suffix_data
+        attr_reader :type, :suffix_data, :delta
 
         def initialize(suffix_data:, delta:)
           @type = Sidetreerb::Sidetree::OperationManager::OperationType::CREATE
@@ -13,7 +13,7 @@ module Sidetreerb
         end
 
         def export_json
-          { type: @type, suffixData: @suffix_data, delta: { update_commitment: @delta.update_commitment, patches: @delta.list_patches } }
+          { type: type, suffixData: suffix_data, delta: { update_commitment: delta.update_commitment, patches: delta.list_patches } }
         end
 
         def is_valid?
@@ -22,6 +22,10 @@ module Sidetreerb
 
         def generate_files
           
+        end
+
+        def delta_hash
+          delta.generate_hash
         end
 
         private
