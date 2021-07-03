@@ -58,7 +58,8 @@ module Sidetreerb
       end
 
       def generate_suffix_data(recover_commitment:, delta_hash:)
-        { hoge: "hoge" }
+
+        { deltaHash: delta_hash, recoveryCommitment: recover_commitment }
       end
 
     end
