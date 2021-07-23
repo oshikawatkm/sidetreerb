@@ -15,7 +15,7 @@ module Sidetreerb
         end
 
         def generate_commitment
-          Sidetreerb::Sidetree::Utils::Hash.double_hash(@pubkey)
+          Sidetreerb::Sidetree::Utils::Hash.canonicalized_double_multihash(@pubkey.to_bn.to_s)
         end
 
         def to_jwk
