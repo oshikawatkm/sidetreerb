@@ -1,13 +1,19 @@
-module Sidetree
+module Sidetreerb
   module Blockchain
-    class Bitcoin
-      autoload :TxBuilder, ''
+    class Bitcoind
+      autoload :Wallet, 'sidetreerb/blockchain/bitcoin/wallet'
+      autoload :TxBuilder, 'sidetreerb/blockchain/bitcoin/tx_builder'
+      autoload :BitcoinCore, 'sidetreerb/blockchain/bitcoin/bitcoin_core'
+      autoload :RPC, 'sidetreerb/blockchain/bitcoin/rpc'
 
-      def create
-        new(blockchain_adapter.create_client)        
+      attr_reader :wallet, :tx_builder, :client
+
+      def initialize(config)
+        @wallet = Wallet.new(config)
+        # @tx_builder = TxBuilder.new(config[:])
+        @client = BitcoinCore.new(config)
       end
-      
-      
+
     end
   end
 end
