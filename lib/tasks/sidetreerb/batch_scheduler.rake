@@ -4,14 +4,8 @@ module Sidetreerb
       module BatchScheduler
         module_function
 
-        def run(timeout)
-          loop do
-            Sidetreerb::Sidetree::BatchWrite.write
-            sleep timeout
-            if stop
-              break
-            end
-          end
+        def run
+          Sidetreerb::Sidetree::BatchWrite.write
         end
 
       end
