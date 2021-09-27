@@ -16,23 +16,18 @@ RSpec.describe 'Sidetreerb::Blockchain' do
       } 
     }
 
-    context "#get_blockchain_info" do
-      subject { blockchain.get_blockchain_info }
-      it { expect(subject).to be eq 1 }
-    end
-
     context "#get_new_address" do
-      subject { blockchain.getnewaddress }
+      subject { blockchain.get_new_address }
       it { expect(subject).to be eq 1 }
     end
 
     context "#get_blockcount" do
-      subject { blockchain.getblockcount }
+      subject { blockchain.get_blockcount }
       it { expect(subject).to be eq 1 }
     end
 
     context "#" do
-      subject { Sidetreerb::Blockchain.listwallets }
+      subject { blockchain.list_wallet }
       it { expect(subject).to be eq 1 }
     end
 

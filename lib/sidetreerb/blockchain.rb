@@ -10,8 +10,9 @@ module Sidetreerb
         case config[:blockchain][:type]
         when 'bitcoin'
           bitcoind = Sidetreerb::Blockchain::Bitcoind.new(config[:blockchain])
-          blockchain_adapter = bitcoind.client
-          wallet_adapter = bitcoind.wallet
+          Sidetreerb::Blockchain.blockchain_adapter = bitcoind.client
+          Sidetreerb::Blockchain.wallet_adapter = bitcoind.wallet
+          new(bitcoind.client, bitcoind.wallet)
         when 'litecoin'
           raise 'implementing...'
         else
@@ -26,6 +27,10 @@ module Sidetreerb
       def wallet_adapter=(adapter)
         @wallet_adapter = adapter
       end
+
+    end
+    
+    def initialize(blockchain, wallet)
 
     end
 
@@ -72,8 +77,6 @@ module Sidetreerb
     def list_unspent
       wallet_adapter.list_unspent
     end
-
-    private
 
     def blockchain_adapter
       self.class.blockchain_adapter

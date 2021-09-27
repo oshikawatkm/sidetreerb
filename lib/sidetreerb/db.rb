@@ -19,10 +19,15 @@ module Sidetreerb
 
     end
 
+
+    def add_transaction(transaction)
+      db_adapter.add_transaction(transaction)
+    end
+
     private
 
-    def wallet_adapter
-      self.class.wallet_adapter
+    def db_adapter
+      self.class.db_adapter
     end
 
   end

@@ -2,6 +2,7 @@
 module Sidetreerb
   module Sidetree
     class DBManager
+      attr_reader :db
 
       def initialize(db_adapter:)
         @db = db_adapter

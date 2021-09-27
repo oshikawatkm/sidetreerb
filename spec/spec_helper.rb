@@ -15,4 +15,19 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
+  config.before(:suite) do
+    config = { 
+      blockchain: { 
+        type: 'bitcoin',
+        schema: 'http', 
+        host: '0.0.0.0', 
+        port: 18443, 
+        user: 'rpcuser', 
+        password: 'rpcpassword',
+        walelt_name: 'wallet1'
+      } 
+    } 
+    Sidetreerb::Blockchain.configure(config)
+  end
+
 end

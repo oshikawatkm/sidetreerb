@@ -4,14 +4,8 @@ module Sidetreerb
       module BlockchainProcessor
         module_function
 
-        def run(timeout)
-          loop do
-            Sidetreerb::Sidetree::BatchWrite.write
-            sleep timeout
-            if stop
-              break
-            end
-          end
+        def run(block_height)
+          Sidetreerb::Sidetree::BlockchainProcessor.process_blocks(start_block_height: block_height)
         end
 
       end
@@ -24,9 +18,8 @@ namespace :sidetreerb do
     namespace :blockchain_processor do
       desc 'start batch writer'
       task :start, [] => [:environment] do |_, args|
-        minutes = args[:minutes] ||= 5 
-        timeout = minutes * 60
-        Sidetreerb::Task::BatchScheduler.run(timeout)
+        block_height = 100
+        Sidetreerb::Task::BlockchainProcessor.run(block_height)
       end
 
       desc 'stop batch writer'

@@ -5,7 +5,7 @@ module Sidetreerb
 
       class << self
         def get_instance
-          self.new
+          self.new(Sidetreerb::Blockchain.blockchain_adapter, Sidetreerb::Blockchain.wallet_adapter, '')
         end
       end
 
@@ -50,12 +50,12 @@ module Sidetreerb
       end
 
       def process_sidetree_transaction(transaction:, output:)
-
+        db.addTransaction(transaction)
       end
 
       private
 
-      def initialize(blockchain, wallet, db
+      def initialize(blockchain, wallet, db)
         @blockchain = blockchain
         @wallet = wallet
         @db = db
